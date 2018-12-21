@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/greycolor"
+
+    >
+
+
+    <LinearLayout
+        android:id="@+id/profiledetail"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        >
+
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/ic_person_black_24dp" />
+
+        <Button
+            android:id="@+id/pic_upload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload"
+            android:textSize="20sp"
+            />
+        <Button
+            android:id="@+id/pic_pick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="pick"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:id="@+id/personName"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_text"
+
+            android:hint="  Name"
+            android:textColorHint="#000000"
+            android:textSize="25dp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About and phone number"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+
+            />
+
+        <TextView
+            android:id="@+id/quotation"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_height="60dp"
+            android:hint=" Status"
+            android:background="@drawable/round_text"
+            android:textSize="30dp"
+            android:textColorHint="#000000"
+            android:textStyle="bold"
+
+            />
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:layout_gravity="end"
+            android:layout_margin="5dp"/>
+
+
+        <TextView
+            android:id="@+id/personNumber"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_text"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:textColorHint="#000000"
+            android:hint="  Number"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/save_changes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Changes"
+            android:textSize="20sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="right"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/updatestatus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/new_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Status"
+            android:textSize="25sp"/>
+
+        <Button
+            android:id="@+id/update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Post"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

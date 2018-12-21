@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333639">
+
+    <ImageView
+        android:id="@+id/progressbar"
+        android:contentDescription="@null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <jp.shts.android.storiesprogressview.StoriesProgressView
+        android:id="@+id/story"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="4dp">
+
+    </jp.shts.android.storiesprogressview.StoriesProgressView>
+
+</RelativeLayout>
