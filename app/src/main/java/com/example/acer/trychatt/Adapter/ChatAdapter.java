@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,9 +46,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final chatModel myData = arrayList.get(position);
-          holder.imageView.setImageResource(Integer.parseInt(myData.getImage()));
+
+        Picasso.get().load(myData.getImage()).into(holder.imageView);
         holder.name.setText(myData.getName());
-         firebaseDatabase = FirebaseDatabase.getInstance().getReference("UserTable");
 
         if (myData.getStatus().equals("online"))
             holder.online_icon.setVisibility(View.VISIBLE);
@@ -59,6 +60,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
             public void onClick(View view) {
                 Intent intent = new Intent(context, ChatBox.class);
                 intent.putExtra("name", myData.getName());
+                intent.putExtra("user_id", myData.getId());
                 context.startActivity(intent);
             }
         });

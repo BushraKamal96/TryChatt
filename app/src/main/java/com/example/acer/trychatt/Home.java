@@ -157,17 +157,17 @@ public class Home extends AppCompatActivity implements myInterface {
 //        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 //    }
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("UserTable").child(firebaseAuth.getCurrentUser().getUid());
-        if (firebaseAuth.getCurrentUser() != null) {
-            databaseReference.child("status").setValue("online");
-
-        }
-    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//
+//        databaseReference = FirebaseDatabase.getInstance().getReference().child("UserTable").child(firebaseAuth.getCurrentUser().getUid());
+//        if (firebaseAuth.getCurrentUser() != null) {
+//            databaseReference.child("status").setValue("online");
+//
+//        }
+//    }
 
     @Override
     public void myMessage(String message) {

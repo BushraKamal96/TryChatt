@@ -21,6 +21,7 @@ import com.example.acer.trychatt.model.ChatMessage;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
@@ -30,14 +31,23 @@ public class ChatBox extends AppCompatActivity {
     RelativeLayout main;
     Button submit_button;
     EditText emojiconEditText;
-    String username;
+    String username, my_id, userId;
     Toolbar toolbar;
+
+    FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_box);
+
+        my_id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        userId = getIntent().getExtras().getString("user_id");
+        username = getIntent().getExtras().getString("name");
+
+
 
         toolbar = findViewById(R.id.page_toolbar);
         setSupportActionBar(toolbar);
@@ -48,13 +58,16 @@ public class ChatBox extends AppCompatActivity {
         submit_button = findViewById(R.id.submit_button);
         emojiconEditText = findViewById(R.id.emojicon_edit_text);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("UserTable");
+
         displayMessages();
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase.getInstance().getReference("Messages").push().setValue(new ChatMessage(emojiconEditText.getText().toString(),
-                        FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                FirebaseDatabase.getInstance().getReference("Messages").child(my_id).child(userId).push().setValue(new ChatMessage
+                        (emojiconEditText.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 emojiconEditText.setText("");
                 emojiconEditText.requestFocus();
             }
@@ -69,7 +82,7 @@ public class ChatBox extends AppCompatActivity {
         final RecyclerView listOfMessage = findViewById(R.id.list_of_message);
         listOfMessage.setLayoutManager(new LinearLayoutManager(ChatBox.this));
 
-        Query query = FirebaseDatabase.getInstance().getReference("Messages");
+        Query query = FirebaseDatabase.getInstance().getReference("Messages").child(my_id).child(userId);
 
         FirebaseRecyclerOptions<ChatMessage> options = new FirebaseRecyclerOptions.Builder<ChatMessage>()
                 .setQuery(query, ChatMessage.class)

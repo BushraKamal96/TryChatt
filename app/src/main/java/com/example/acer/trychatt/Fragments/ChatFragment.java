@@ -95,7 +95,7 @@ public class ChatFragment extends Fragment {
 
                     chatModel model = data.getValue(chatModel.class);
                     if (firebaseUser != null) {
-                        if (!model.getId().equals(firebaseUser.getUid())) {
+                        if (model != null && !model.getId().equals(firebaseUser.getUid())) {
                             arrayList.add(model);
                         }
                     }
@@ -120,41 +120,18 @@ public class ChatFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 
-        forlogindbreference = FirebaseDatabase.getInstance().getReference().child("UserTable").child(firebaseAuth.getCurrentUser().getUid());
-        if (firebaseAuth.getCurrentUser() != null) {
-            forlogindbreference.child("status").setValue("online");
-
+            databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("status").setValue("Online");
         }
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 
-        arrayList.clear();
-        myAdapter.notifyDataSetChanged();
-
-        Log.e("arraylist size onStop", "" + String.valueOf(arrayList.size()));
-
-        if (firebaseAuth.getCurrentUser() != null) {
-            databaseReference.child(firebaseAuth.getCurrentUser().getUid()).child("status").setValue("offline").addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful())
-                        Log.e("offlineupdate", "true");
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.e("exception", e.getMessage());
-
-                }
-            });
-        } else {
-            Log.e("UserUtil", "Null");
+            databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("status").setValue("Offline");
         }
-
     }
 }
